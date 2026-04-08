@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useFetch from './useFetch';
 function App() {
-  const { data, loading, error } = useFetch(
-    'https://api.themoviedb.org/3/movie/popular?language=zh-TW&page=1',
-  );
+  const [query, setQuery] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const url = searchTerm
+    ? `https://api.themoviedb.org/3/search/movie?query=${searchTerm}&language=zh-TW`
+    : `https://api.themoviedb.org/3/movie/popular?language=zh-TW&page=1`;
+
+  const { data, loading, error } = useFetch(url);
+
+  const handleSearch = () => {
+    setSearchTerm(query);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error:{error}</div>;
@@ -12,6 +21,13 @@ function App() {
   return (
     <div>
       <h1>Movie Search</h1>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="搜尋電影..."
+      />
+      <button onClick={handleSearch}>搜尋</button>
       <div>
         {data &&
           data.results.map((movie) => (
