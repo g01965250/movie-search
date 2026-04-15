@@ -30,6 +30,7 @@ function HomePage() {
         placeholder="搜尋電影..."
       />
       <button onClick={handleSearch}>搜尋</button>
+      <button onClick={() => navigate('/favorites')}>❤️ 收藏清單</button>
       <div>
         {data &&
           data.results.map((movie) => (
