@@ -1,0 +1,144 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e50914;
+}
+
+.search-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  width: 300px;
+  height: 44px;
+  padding: 0 16px;
+  font-size: 16px;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #fff;
+  outline: none;
+}
+.search-input:focus {
+  border-color: #e50914;
+}
+
+.search-btn {
+  height: 44px;
+  padding: 0 20px;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.search-btn:hover {
+  background: #b20710;
+}
+
+.favorites-btn {
+  height: 44px;
+  padding: 0 20px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.favorites-btn:hover {
+  border-color: #fff;
+}
+
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.movie-card {
+  width: calc(25% - 15px);
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 12px;
+}
+
+.movie-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-card-rating {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.movie-card-date {
+  font-size: 13px;
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .home-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .search-wrapper {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .movie-card {
+    width: calc(50% - 10px);
+  }
+
+  .search-btn,
+  .favorites-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-card {
+    width: 100%;
+  }
+}

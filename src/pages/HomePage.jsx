@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import useFetch from '../useFetch';
 import { useNavigate } from 'react-router-dom';
+import './HomePage.css';
+
 function HomePage() {
   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,31 +23,47 @@ function HomePage() {
   console.log(data);
 
   return (
-    <div>
-      <h1>Movie Search</h1>
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="搜尋電影..."
-      />
-      <button onClick={handleSearch}>搜尋</button>
-      <button onClick={() => navigate('/favorites')}>❤️ 收藏清單</button>
-      <div>
+    <div className="home-container">
+      <div className="home-header">
+        <h1 className="home-title">Movie Search</h1>
+        <div className="search-wrapper">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="搜尋電影..."
+            className="search-input"
+          />
+          <button onClick={handleSearch} className="search-btn">
+            搜尋
+          </button>
+          <button
+            onClick={() => navigate('/favorites')}
+            className="favorites-btn"
+          >
+            ❤️ 收藏清單
+          </button>
+        </div>
+      </div>
+      <div className="movie-grid">
         {data &&
           data.results.map((movie) => (
             <div
               key={movie.id}
               onClick={() => navigate(`/movie/${movie.id}`)}
-              style={{ cursor: 'pointer' }}
+              className="movie-card"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
               />
-              <h3>{movie.title}</h3>
-              <p>評分：{movie.vote_average}</p>
-              <p>上映日期：{movie.release_date}</p>
+              <div className="movie-info">
+                <h3 className="movie-card-title">{movie.title}</h3>
+                <p className="movie-card-rating">評分：{movie.vote_average}</p>
+                <p className="movie-card-date">
+                  上映日期：{movie.release_date}
+                </p>
+              </div>
             </div>
           ))}
       </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useFetch from '../useFetch';
+import './MovieDetailPage.css';
 
 function MovieDetailPage() {
   const { id } = useParams();
@@ -37,22 +38,33 @@ function MovieDetailPage() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error:{error}</div>;
   return (
-    <div>
-      <button onClick={() => navigate(-1)}>返回</button>
+    <div className="detail-container">
+      <button className="back-btn" onClick={() => navigate(-1)}>
+        返回
+      </button>
       {data && (
-        <div>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-            alt={data.title}
-          />
-          <h1>{data.title}</h1>
-          <p>{data.overview}</p>
-          <p>評分：{data.vote_average}</p>
-          <p>上映日期：{data.release_date}</p>
-          <p>片長：{data.runtime} 分鐘</p>
-          <button onClick={toggleFavorite}>
-            {favorited ? '❤️ 已收藏' : '🤍 加入收藏'}
-          </button>
+        <div className="detail-content">
+          <div className="detail-poster">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+              alt={data.title}
+            />
+          </div>
+          <div className="detail-info">
+            <h1 className="detail-title">{data.title}</h1>
+            <div className="detail-meta">
+              <p>評分：{data.vote_average}</p>
+              <p>上映日期：{data.release_date}</p>
+              <p>片長：{data.runtime} 分鐘</p>
+            </div>
+            <p className="detail-overview">{data.overview}</p>
+            <button
+              className={`favorite-btn ${favorited ? 'favorited' : ''}`}
+              onClick={toggleFavorite}
+            >
+              {favorited ? '❤️ 已收藏' : '🤍 加入收藏'}
+            </button>
+          </div>
         </div>
       )}
     </div>
